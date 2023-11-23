@@ -33,8 +33,8 @@ with open('AKBG_Chapter01.book', 'rb') as f:
                 # TODO: somehow determine if text is safe to translate
                 string = ''
                 try:
-                    # this will error if the code is not utf-8 text, main reason for try-catch
-                    # TODO: place less code in try-catch
+                    # this next line will error if the hex is not utf-8 text
+                    # TODO: remove everything else from the try-catch
                     string = codecs.decode(hexdata[start:i*2], "hex").decode('utf-8').replace("\n", "")
                     if pattern.search(string) != None: # check for Japanese text
                         trnhex = translate(string)
