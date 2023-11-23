@@ -29,27 +29,31 @@ with open('AKBG_Chapter01.book', 'rb') as f:
             if start == -1:
                 start = i*2
         else:
-            if start != -1:
+            if start != -1: # end of non-blank section of hex data, may be text or code
+                # TODO: somehow determine if text is safe to translate
                 string = ''
                 try:
+                    # this will error if the code is not utf-8 text, main reason for try-catch
+                    # TODO: place less code in try-catch
                     string = codecs.decode(hexdata[start:i*2], "hex").decode('utf-8').replace("\n", "")
-                    if pattern.search(string) != None:
+                    if pattern.search(string) != None: # check for Japanese text
                         trnhex = translate(string)
                         #trnhex = re.sub('[^A-Za-z0-9 ]+', '', trnhex)
                         print(trnhex)
                         tr = trnhex.encode("utf-8").hex()
                         size = len(hexdata[start:i*2])
                         if len(tr) > size:
-                            print("oops")
-                            #raise UnboundLocalError()
+                            print("oops")   #the translation is too long, the file size will change and the game will crash
+                            #raise UnboundLocalError()  # do not insert too long translation
+                            # TODO: remove existing padding in file for longer translations
                         while(len(tr) < size):
                             tr += '00'
                         hexdata = hexdata[:start] + tr + hexdata[i*2:]
-                        print(str(round(((i*2)/len(hexdata))*100,2))+'%')
-                        if(round(((i*2)/len(hexdata))*100,2) > 25):
+                        print(str(round(((i*2)/len(hexdata))*100,2))+'%')  # percent completed
+                        if(round(((i*2)/len(hexdata))*100,2) > 25):   # quit early at 25%
                             break
                         q+=1
-                        if(q==4):
+                        if(q==4):   # quit early after 4 translations. TODO:remove after fixing game crashes
                             break
                 except UnicodeDecodeError:
                     pass
