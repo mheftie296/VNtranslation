@@ -10,6 +10,6 @@ Current issues:
 
 -Only the Visual Novel sections are translated
 
--The translations are bad (translate with context?)
+-The translations are bad
 
 I was hoping the LLM would let me use the previous lines as context but that might not be an option
