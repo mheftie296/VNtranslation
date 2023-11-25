@@ -6,8 +6,10 @@ Running this script requires extracting and replacing one of the AKBG_Chapter**.
 
 Current issues:
 
-Too long translations are currently replaced with 'TL'
+-Too long translations are currently replaced with 'TL'
 
-Only the Visual Novel sections are translated
+-Only the Visual Novel sections are translated
 
-The translations are bad (translate with context?)
+-The translations are bad (translate with context?)
+
+I was hoping the LLM would let me use the previous lines as context but that might not be an option
