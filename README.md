@@ -7,5 +7,7 @@ Running this script requires extracting and replacing one of the AKBG_Chapter**.
 Current issues:
 
 Too long translations are currently replaced with 'TL'
+
 Only the Visual Novel sections are translated
+
 The translations are bad (translate with context?)
